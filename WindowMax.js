@@ -30,28 +30,26 @@ var canvas = document.getElementById('canvas'),
             rect.startY = mouseX;
             dragBR = true;
         }
-        // 1. top left
         else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY)) {
             dragTL = true;
         }
-        // 2. top right
+     
         else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY)) {
             dragTR = true;
 
         }
-        // 3. bottom left
+
         else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
             dragBL = true;
 
         }
-        // 4. bottom right
+      
         else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
             dragBR = true;
 
         }
-        // (5.) none of them
         else {
-            // handle not resizing
+          //EMPTY FOR NOW
         }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -96,9 +94,5 @@ var canvas = document.getElementById('canvas'),
         ctx.fillRect(rect.startX, rect.startY, rect.w, rect.h);
         drawHandles();
     }
-   
-
-
-
 
     init();
