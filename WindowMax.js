@@ -1,4 +1,4 @@
-var canvas = document.getElementById('canvas'),
+var canvas = document.getElementById("Mycanvas"),
         ctx = canvas.getContext('2d'),
         rect = {},
         drag = false,
