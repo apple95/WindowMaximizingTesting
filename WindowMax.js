@@ -91,8 +91,10 @@ var canvas = document.getElementById("Mycanvas"),
 
     function draw() {
         ctx.fillStyle = "#222222";
+        ctx.canvas.width  = window.innerWidth;
+        ctx.canvas.height = window.innerHeight;
         ctx.fillRect(rect.startX, rect.startY, rect.w, rect.h);
-        drawHandles();
+       
     }
 
     init();
