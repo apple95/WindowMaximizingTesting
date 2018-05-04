@@ -1,100 +1,97 @@
-var canvas = document.getElementById("Mycanvas"),
-        ctx = canvas.getContext('2d'),
-        rect = {},
-        drag = false,
-        mouseX,
-        mouseY,
-        closeEnough = 10,
-        dragTL = dragBL = dragTR = dragBR = false;
+function getMousePos(canvas, event) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: event.clientX - rect.left,
+    y: event.clientY - rect.top
+  };
+}
+function isInside(pos, rect){
+  return pos.x > rect.x && pos.x < rect.x+rect.width && pos.y < rect.y+rect.heigth && pos.y > rect.y
+}
 
-    function init() {
-        canvas.addEventListener('mousedown', mouseDown, false);
-        canvas.addEventListener('mouseup', mouseUp, false);
-        canvas.addEventListener('mousemove', mouseMove, false);
+var canvas = document.getElementById('Mycanvas');
+var context = canvas.getContext('2d');
+var rect = {
+  x:650,
+  y:0,
+  width:20,
+  heigth:20
+};
 
-        rect = {
-            startX: 100,
-            startY: 200,
-            w: 300,
-            h: 200
-        }
+var rect2 = {
+  x:500,
+  y:0,
+  width:20,
+  heigth:20
+};
+context.beginPath();
+context.rect(650, 0, 20, 20); 
+context.fillStyle = '#FFFFFF'; 
+context.fillStyle = 'rgba(225,225,225,0.5)';
+context.lineWidth = 2;
+context.strokeStyle = '#000000'; 
+context.stroke();
+context.closePath();
+
+context.beginPath();
+context.rect(500, 0, 20, 20); 
+context.fillStyle = '#FFFFFF'; 
+context.fillStyle = 'rgba(225,225,225,0.5)';
+context.lineWidth = 2;
+context.strokeStyle = '#000000'; 
+context.stroke();
+context.closePath();
+
+
+        // context.fillStyle = "#222222";
+        // context.canvas.width  = window.innerWidth;
+        // context.canvas.height = window.innerHeight;
+        // context.beginPath();
+        // context.rect(200, 100, 200, 100);
+        // context.closePath();
+
+canvas.addEventListener('click', function(evt) {
+  var mousePos = getMousePos(canvas, evt);
+    debugger;
+  if (isInside(mousePos,rect)) {
+      draw();
     }
 
-    function mouseDown(e) {
-        mouseX = e.pageX - this.offsetLeft;
-        mouseY = e.pageY - this.offsetTop;
-
-        // if there isn't a rect yet
-        if (rect.w === undefined) {
-            rect.startX = mouseY;
-            rect.startY = mouseX;
-            dragBR = true;
-        }
-        else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY)) {
-            dragTL = true;
-        }
-     
-        else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY)) {
-            dragTR = true;
-
-        }
-
-        else if (checkCloseEnough(mouseX, rect.startX) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
-            dragBL = true;
-
-        }
-      
-        else if (checkCloseEnough(mouseX, rect.startX + rect.w) && checkCloseEnough(mouseY, rect.startY + rect.h)) {
-            dragBR = true;
-
-        }
-        else {
-          //EMPTY FOR NOW
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        draw();
-
+  if (isInside(mousePos,rect2)) {
+      draw2();
     }
 
-    function checkCloseEnough(p1, p2) {
-        return Math.abs(p1 - p2) < closeEnough;
-    }
 
-    function mouseUp() {
-        dragTL = dragTR = dragBL = dragBR = false;
-    }
+}, false);
 
-    function mouseMove(e) {
-        mouseX = e.pageX - this.offsetLeft;
-        mouseY = e.pageY - this.offsetTop;
-        if (dragTL) {
-            rect.w += rect.startX - mouseX;
-            rect.h += rect.startY - mouseY;
-            rect.startX = mouseX;
-            rect.startY = mouseY;
-        } else if (dragTR) {
-            rect.w = Math.abs(rect.startX - mouseX);
-            rect.h += rect.startY - mouseY;
-            rect.startY = mouseY;
-        } else if (dragBL) {
-            rect.w += rect.startX - mouseX;
-            rect.h = Math.abs(rect.startY - mouseY);
-            rect.startX = mouseX;
-        } else if (dragBR) {
-            rect.w = Math.abs(rect.startX - mouseX);
-            rect.h = Math.abs(rect.startY - mouseY);
-        }
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        draw();
-    }
 
-    function draw() {
-        ctx.fillStyle = "#222222";
-        ctx.canvas.width  = window.innerWidth;
-        ctx.canvas.height = window.innerHeight;
-        ctx.fillRect(rect.startX, rect.startY, rect.w, rect.h);
+function draw() {
+        //clear();
+        context.fillStyle = "#222222";
+        context.canvas.width  = window.innerWidth;
+        context.canvas.height = window.innerHeight;
+        context.beginPath();
+        context.beginPath();
+context.rect(0, 100, window.innerWidth, window.innerHeight); 
+context.fillStyle = '#FFFFFF'; 
+context.fillStyle = 'rgba(225,225,225,0.5)';
+context.lineWidth = 2;
+context.strokeStyle = '#000000'; 
+context.stroke();
+context.closePath();
        
-    }
+   }
 
-    init();
+
+   function draw2() {
+        //clear();
+       context.beginPath();
+       context.rect(200, 100, 200, 100); 
+       context.fillStyle = '#FFFFFF'; 
+       context.fillStyle = 'rgba(225,225,225,0.5)';
+      context.lineWidth = 2;
+       context.strokeStyle = '#000000'; 
+       context.stroke();
+       context.closePath();
+       
+   }
