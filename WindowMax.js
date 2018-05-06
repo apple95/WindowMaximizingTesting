@@ -105,6 +105,7 @@ canvas.addEventListener('click', function(evt) {
 
    else if (isInside(mousePos,rect3)) {
       draw3();
+
     }
 
 
@@ -128,7 +129,7 @@ function draw() {
 
 
     }
-    else {
+    else if (a === 0){
 
     b = 0;
     context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
@@ -153,7 +154,7 @@ function draw() {
       //Do nothing
       b = 0;
     } 
-    else {
+    else if (b === 0) {
        a = 0;
        context.clearRect(0,100,window.innerWidth,window.innerHeight);
        context.beginPath();
@@ -170,16 +171,20 @@ function draw() {
 
    function draw3() {
       if (a === 1) {
-       a = 0;
+       a = 2;
+       b = 2;
        context.clearRect(0,100,window.innerWidth,window.innerHeight);
       }
-      else if(b === 1) {
-        b = 0;
+      else if (b === 1) {
+        a = 2;
+        b = 2;
        context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
       } else   {
-         
+         a = 2;
+         b = 2;
          context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
       
       }
+
 }
 
