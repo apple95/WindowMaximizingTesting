@@ -19,13 +19,14 @@ var rect = {
 };
 
 var rect2 = {
-  x:500,
+  x:630,
   y:0,
   width:20,
   heigth:20
 };
 context.beginPath();
 context.rect(650, 0, 20, 20); 
+context.rect(655,5,10,10);
 context.fillStyle = '#FFFFFF'; 
 context.fillStyle = 'rgba(225,225,225,0.5)';
 context.lineWidth = 2;
@@ -34,7 +35,7 @@ context.stroke();
 context.closePath();
 
 context.beginPath();
-context.rect(500, 0, 20, 20); 
+context.rect(630, 0, 20, 20); 
 context.fillStyle = '#FFFFFF'; 
 context.fillStyle = 'rgba(225,225,225,0.5)';
 context.lineWidth = 2;
@@ -42,13 +43,34 @@ context.strokeStyle = '#000000';
 context.stroke();
 context.closePath();
 
+context.beginPath();
+context.moveTo(637,10);
+context.lineTo(645,10);
+context.stroke();
+context.closePath();
 
-        // context.fillStyle = "#222222";
-        // context.canvas.width  = window.innerWidth;
-        // context.canvas.height = window.innerHeight;
-        // context.beginPath();
-        // context.rect(200, 100, 200, 100);
-        // context.closePath();
+
+context.beginPath();
+context.moveTo(670,0);
+context.lineTo(690,20);
+context.stroke();
+context.closePath();
+
+context.beginPath();
+context.moveTo(670,20);
+context.lineTo(690,0);
+context.stroke();
+context.closePath();
+
+context.beginPath();
+context.rect(670, 0, 20, 20); 
+context.fillStyle = '#FFFFFF'; 
+context.fillStyle = 'rgba(225,225,225,0.5)';
+context.lineWidth = 2;
+context.strokeStyle = '#000000'; 
+context.stroke();
+context.closePath();
+       
 
 canvas.addEventListener('click', function(evt) {
   var mousePos = getMousePos(canvas, evt);
@@ -67,26 +89,23 @@ canvas.addEventListener('click', function(evt) {
 
 function draw() {
         //clear();
-        context.fillStyle = "#222222";
-        context.canvas.width  = window.innerWidth;
-        context.canvas.height = window.innerHeight;
-        context.beginPath();
-        context.beginPath();
-context.rect(0, 100, window.innerWidth, window.innerHeight); 
-context.fillStyle = '#FFFFFF'; 
-context.fillStyle = 'rgba(225,225,225,0.5)';
-context.lineWidth = 2;
-context.strokeStyle = '#000000'; 
-context.stroke();
-context.closePath();
+     
+    context.beginPath();
+    context.fillRect(0, 100, window.innerWidth, window.innerHeight); 
+    context.fillStyle = '#FFFFFF'; 
+    context.fillStyle = 'rgba(225,225,225,0.5)';
+    context.lineWidth = 2;
+    context.strokeStyle = '#000000'; 
+    context.stroke();
+    context.closePath();
        
    }
 
 
    function draw2() {
-        //clear();
+       // clear();
        context.beginPath();
-       context.rect(200, 100, 200, 100); 
+       context.fillRect(200, 100, 200, 100); 
        context.fillStyle = '#FFFFFF'; 
        context.fillStyle = 'rgba(225,225,225,0.5)';
       context.lineWidth = 2;
