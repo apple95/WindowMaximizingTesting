@@ -46,13 +46,20 @@ var closeButton = {
   height:20
 };
 
+// context.beginPath();
+// context.fillRect(0,0,window.innerWidth,window.innerHeight/20); 
+// context.fillStyle = '#00FFFF'; 
+// context.lineWidth = 2;
+// context.strokeStyle = '#000000'; 
+// context.stroke();
+// context.closePath();
+
 //Draw Maximize Button
 context.beginPath();
 context.rect(maximizeButton.x,maximizeButton.y,maximizeButton.width,maximizeButton.height); 
-context.rect(655,5,10,10);
-context.fillStyle = '#0000FF'; 
+context.rect(maximizeButton.x+5,maximizeButton.y+5,maximizeButton.width-10,maximizeButton.height-10);
+context.fillStyle = 'blue'; 
 context.lineWidth = 2;
-context.strokeStyle = '#000000'; 
 context.stroke();
 context.closePath();
 
@@ -61,26 +68,25 @@ context.beginPath();
 context.rect(minimizeButton.x,minimizeButton.y,minimizeButton.width,minimizeButton.height); 
 context.fillStyle = '#0000FF'; 
 context.lineWidth = 2;
-context.strokeStyle = '#000000'; 
 context.stroke();
 context.closePath();
 
 context.beginPath();
-context.moveTo(637,10);
-context.lineTo(645,10);
+context.moveTo(minimizeButton.x+7,minimizeButton.y+10);
+context.lineTo(minimizeButton.x+15,minimizeButton.y+10);
 context.stroke();
 context.closePath();
 
 //Draw Close Button
 context.beginPath();
-context.moveTo(670,0);
-context.lineTo(690,20);
+context.moveTo(closeButton.x,closeButton.y);
+context.lineTo(closeButton.x+20,closeButton.y+20);
 context.stroke();
 context.closePath();
 
 context.beginPath();
-context.moveTo(670,20);
-context.lineTo(690,0);
+context.moveTo(closeButton.x,closeButton.y+20);
+context.lineTo(closeButton.x+20,closeButton.y);
 context.stroke();
 context.closePath();
 
@@ -94,7 +100,7 @@ context.closePath();
 
 //Default Window
 context.beginPath();
-context.fillRect(0,100,window.innerWidth/4,window.innerHeight/4); 
+context.fillRect(0,40,window.innerWidth/4,window.innerHeight/4); 
 context.fillStyle = '#0000FF'; 
 context.lineWidth = 2;
 context.strokeStyle = '#000000'; 
@@ -125,9 +131,9 @@ canvas.addEventListener('click', function(evt) {
 function drawMaximizedWindow() {
   if (maxWindowFlag === 1) {
     maxWindowFlag = 0;
-    context.clearRect(0,100,window.innerWidth,window.innerHeight);
+    context.clearRect(0,40,window.innerWidth,window.innerHeight);
     context.beginPath();
-    context.fillRect(0,100,window.innerWidth/4,window.innerHeight/4);
+    context.fillRect(0,40,window.innerWidth/4,window.innerHeight/4);
     context.fillStyle = '#0000FF'; 
     context.lineWidth = 2;
     context.strokeStyle = '#000000';
@@ -138,9 +144,9 @@ function drawMaximizedWindow() {
 
   else if (maxWindowFlag === 0) {
     minWindowFlag = 0;
-    context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
+    context.clearRect(0,40,window.innerWidth/4,window.innerHeight/4);
     context.beginPath();
-    context.fillRect(0, 100, window.innerWidth, window.innerHeight); 
+    context.fillRect(0, 40, window.innerWidth, window.innerHeight); 
     context.fillStyle = '#0000FF'; 
     context.lineWidth = 2;
     context.strokeStyle = '#000000'; 
@@ -161,9 +167,9 @@ function drawMinimizedWindow() {
 
   else if (minWindowFlag === 0) {
     maxWindowFlag = 0;
-    context.clearRect(0,100,window.innerWidth,window.innerHeight);
+    context.clearRect(0,40,window.innerWidth,window.innerHeight);
     context.beginPath();
-    context.fillRect(0,100,window.innerWidth/4,window.innerHeight/4); 
+    context.fillRect(0,40,window.innerWidth/4,window.innerHeight/4); 
     context.fillStyle = '#0000FF'; 
     context.lineWidth = 2;
     context.strokeStyle = '#000000'; 
@@ -180,19 +186,19 @@ function closeWindow()  {
   if (maxWindowFlag === 1) {
     maxWindowFlag = 2;
     minWindowFlag = 2;
-    context.clearRect(0,100,window.innerWidth,window.innerHeight);
+    context.clearRect(0,40,window.innerWidth,window.innerHeight);
   }
 
   else if (minWindowFlag === 1) {
     maxWindowFlag = 2;
     minWindowFlag = 2;
-    context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
+    context.clearRect(0,40,window.innerWidth/4,window.innerHeight/4);
   } 
 
   else{
     maxWindowFlag = 2;
     minWindowFlag = 2;
-    context.clearRect(0,100,window.innerWidth/4,window.innerHeight/4);
+    context.clearRect(0,40,window.innerWidth/4,window.innerHeight/4);
   }
 
 }
