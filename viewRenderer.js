@@ -33,7 +33,8 @@ var sampleView = {
 
 	// The view could be set to max even though it has been minimized.
 	// These are not mutually exclusive attributes.
-	maximized: false, 
+	maximized: false,
+	minimized: false,
 	open: false,
 
 	/**
@@ -48,10 +49,12 @@ var sampleView = {
 	 * Top level draw call for the view object
 	 */
 	draw: function() {
-		// draw the shapes according to the renderDimensions.
-		this.drawViewWrapper();
-		this.drawViewHead();
-		this.drawViewBody();
+		if (this.open) {
+			// draw the shapes according to the renderDimensions.
+			this.drawViewWrapper();
+			this.drawViewHead();
+			this.drawViewBody();
+		}
 	},
 
 	/**
@@ -59,7 +62,7 @@ var sampleView = {
 	 * (This will be the full dimensions of the view and draw the background and border)
 	 */
 	drawViewWrapper: function() {
-		
+
 	},
 
 	/**
@@ -80,14 +83,14 @@ var sampleView = {
 	 * Update the dimensions before drawing
 	 */
 	setRenderDimensions: function() {
-		if (this.open && this.maximized) {
+		if (this.open && this.minimized) {
+			// set render dimensions to be minimized, relative to the canvas size
+		}
+		else if (this.open && this.maximized) {
 			// set render dimensions to fill the canvas, relative to the current canvas size
 		}
 		else if (this.open) {
 			// set render dimensions to customDimensions
-		}
-		else {
-			// set render dimensions to be minimized, relative to the canvas size
 		}
 	},
 
