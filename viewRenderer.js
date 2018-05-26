@@ -4,6 +4,7 @@ var context = canvas.getContext('2d');
 context.translate(0.5, 0.5);
 
 
+
 // var maximizeButton = {
 //   x:650,
 //   y:0,
@@ -61,10 +62,12 @@ var sampleView = {
 	minimized: false,
 	open: true,
 
+
 	/**
 	 * Updates the view's dimensions and draws the shapes
 	 */
 	update: function() {
+		this.drawCanvas();
 		this.setRenderDimensions();
 		this.draw();
 	},
@@ -77,27 +80,117 @@ var sampleView = {
 			// draw the shapes according to the renderDimensions.
 			this.drawViewWrapper();
 			this.drawViewHead();
-			// this.drawViewBody();
+			this.drawViewBody();
+
 		}
 	},
 
-	/**
-	 * Draw the wrapping content of the view
-	 * (This will be the full dimensions of the view and draw the background and border)
-	 */
-	drawViewWrapper: function() {
+	drawCanvas: function() {
 		context.beginPath();
 		context.rect(this.renderDimensions.startPoint.x, this.renderDimensions.startPoint.y, window.innerWidth, window.innerHeight);
 		context.fillStyle = "black";
 		context.lineWidth = 2;
 		context.fill();
 		context.closePath();
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x, this.renderDimensions.startPoint.y+60, window.innerWidth, window.innerHeight-62);
+		context.fillStyle = "gray";
+		context.lineWidth = 2;
+		context.fill();
+		context.closePath();
+
+	},
+	/**
+	 * Draw the wrapping content of the view
+	 * (This will be the full dimensions of the view and draw the background and border)
+	 */
+	drawViewWrapper: function() {
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+70, this.renderDimensions.startPoint.y+300, window.innerWidth/4.5, window.innerHeight/2.5);
+		context.fillStyle = "white";
+		context.lineWidth = 2;
+		context.fill();
+		context.closePath();
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+70, this.renderDimensions.startPoint.y+300, window.innerWidth/4.5, window.innerHeight/2.5);
+		context.strokeStyle = "black";
+		context.lineWidth = 1;
+		context.stroke();
+		context.closePath();
+
 	},
 
 	/**
 	 * Draw the head content of the view (header bar, label, and buttons)
 	 */
 	drawViewHead: function() {
+
+		// context.beginPath();
+		// context.rect(this.renderDimensions.startPoint.x+70, this.renderDimensions.startPoint.y+300, window.innerWidth/4.5, 30);
+		// context.fillStyle = "cyan";
+		// context.lineWidth = 2;
+		// context.fill();
+		// context.closePath();
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+75, this.renderDimensions.startPoint.y+305, 30, 30);
+		context.fillStyle = "cyan";
+		context.lineWidth = 1;
+		context.fill();
+		context.closePath();
+
+		context.beginPath();
+		context.strokeStyle = "white";
+		context.moveTo(this.renderDimensions.startPoint.x+80, this.renderDimensions.startPoint.y+320);
+		context.lineTo(this.renderDimensions.startPoint.x+100, this.renderDimensions.startPoint.y+320);
+		context.stroke();
+		context.closePath();
+
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+107, this.renderDimensions.startPoint.y+305, 180, 30);
+		context.fillStyle = "cyan";
+		context.lineWidth = 1;
+		context.fill();
+		context.closePath();
+
+		context.beginPath();
+		context.fillStyle = "black"
+		context.font = "10px Arial";
+		context.fillText("ACL VIEW",this.renderDimensions.startPoint.x+177,this.renderDimensions.startPoint.y+320);
+		context.closePath();
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+289, this.renderDimensions.startPoint.y+305, 30, 30);
+		context.fillStyle = "cyan";
+		context.lineWidth = 1;
+		context.fill();
+		context.closePath();
+
+		context.beginPath();
+		context.strokeStyle = "white";
+		context.beginPath();
+		context.arc(this.renderDimensions.startPoint.x+306, this.renderDimensions.startPoint.y+320,10,0,2*Math.PI);
+		context.stroke();
+		context.closePath();
+
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+321, this.renderDimensions.startPoint.y+305, 30, 30);
+		context.fillStyle = "cyan";
+		context.lineWidth = 1;
+		context.fill();
+		context.closePath();
+
+
+		context.beginPath();
+		context.strokeStyle = "white";
+		context.rect(this.renderDimensions.startPoint.x+329, this.renderDimensions.startPoint.y+313,15,15)
+		context.stroke();
+		context.closePath();
+
 	// 	//Draw Maximize Button
 	// context.beginPath();
 	// context.rect(maximizeButton.x,maximizeButton.y,maximizeButton.width,maximizeButton.height); 
@@ -108,12 +201,12 @@ var sampleView = {
 	// context.closePath();
 
 //Draw Minimize Button
-	context.beginPath();
-	context.rect(50, 50, 50, 50); 
-	context.fillStyle = "blue"; 
-	context.lineWidth = 2;
-	context.fill();
-	context.closePath();
+	// context.beginPath();
+	// context.rect(50, 50, 50, 50); 
+	// context.fillStyle = "blue"; 
+	// context.lineWidth = 2;
+	// context.fill();
+	// context.closePath();
 
 	// context.beginPath();
 	// context.moveTo(minimizeButton.x+7,minimizeButton.y+10);
@@ -147,6 +240,15 @@ var sampleView = {
 	 * Draw the body content of the view (this will be specific to custom views later)
 	 */
 	drawViewBody: function() {
+		context.beginPath();
+		context.rect(this.renderDimensions.startPoint.x+76, this.renderDimensions.startPoint.y+337, (window.innerWidth/4.5)- 10, (window.innerHeight/2.5)- 40);
+		context.fillStyle = "black";
+		context.lineWidth = 1;
+		context.fill();
+		context.closePath();
+
+
+
 		
 	},
 
@@ -162,7 +264,7 @@ var sampleView = {
 		}
 		else if (this.open) {
 			// set render dimensions to customDimensions
-			//renderDimensions = customDimensions;
+			this.renderDimensions = this.customDimensions;
 		}
 	},
 
